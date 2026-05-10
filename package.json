@@ -1,0 +1,97 @@
+{
+  "name": "macroponent-validator",
+  "displayName": "Macroponent Validator",
+  "description": "Validates XML macroponent files with embedded JSON structures",
+  "version": "1.0.0",
+  "publisher": "Divycholera98",
+  "author": {
+    "name": "Divy Cholera",
+    "email": "choleradivy@gmail.com",
+    "url": "https://divy-cholera.vercel.app/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Divycholera98/Macroponent-Validator.git"
+  },
+  "homepage": "https://github.com/Divycholera98/Macroponent-Validator#readme",
+  "bugs": {
+    "url": "https://github.com/Divycholera98/Macroponent-Validator/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "servicenow",
+    "macroponent",
+    "xml",
+    "json",
+    "validator",
+    "diagnostics"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "macroponent-validator.validate",
+        "title": "Validate Macroponent"
+      },
+      {
+        "command": "macroponent-validator.nextError",
+        "title": "Macroponent: Next Error"
+      },
+      {
+        "command": "macroponent-validator.previousError",
+        "title": "Macroponent: Previous Error"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceFilename =~ /^sys_ux_macroponent.*\\.xml$/",
+          "command": "macroponent-validator.validate",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Macroponent Validator",
+      "properties": {
+        "macroponentValidator.validateOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically validate macroponent files on save"
+        },
+        "macroponentValidator.showNavigationUI": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show error navigation UI in the editor"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.8.0"
+  }
+}
